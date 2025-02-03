@@ -4,7 +4,7 @@
     tiempo real en script.js para:
 
         ● Validar que los campos obligatorios estén completos antes de enviar el
-        formulario.
+        formulario. USANDO AJAX
 
         */
 
@@ -15,28 +15,68 @@
             let file = document.getElementById('file');
 
             form.addEventListener('submit', function(event) {
-                if(username.value === '' || email.value === '' || description.value === '' || file.value === '') {
+                if(username.value === '' || email.value === '' || description.value === '' || file.files.length === 0) {
+                    $.ajax({
+                        url: 'procesar.php',
+                        type: 'POST',
+                        data: {username: username.value, email: email.value, description: description.value, file: file.files.length},
+                        success: function(response) {
+                            if(response === 'empty') {
+                                if(username.value === '') {
+                                    username.setCustomValidity('Este campo es obligatorio');
+                                } else {
+                                    username.setCustomValidity('');
+                                }
+
+                                if (email.value === '') {
+                                    email.setCustomValidity('Este campo es obligatorio');
+                                } else {
+                                    email.setCustomValidity('');
+                                }
+
+                                if (description.value === '') {
+                                    description.setCustomValidity('Este campo es obligatorio');
+                                } else {
+                                    description.setCustomValidity('');
+                                }
+
+                                if (file.files.length === 0) {
+                                    file.setCustomValidity('Este campo es obligatorio');
+                                } else {
+                                    file.setCustomValidity('');
+                                }
+                            }
+                        }
+                    });
                     event.preventDefault();
-                    alert('Por favor, complete todos los campos');
-                }
+                } 
             });
+
         
 
         /*
 
         ● Verificar que el correo electrónico tenga un formato válido.
 
-        */
+        */ 
             const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
             email.addEventListener('input', function() {
                 if(!regex.test(email.value)) {
-                    email.setCustomValidity('Email inválido');
+                    $.ajax({
+                        url: 'procesar.php',
+                        type: 'POST',
+                        data: {email: email.value},
+                        success: function(response) {
+                            if(response === 'invalid') {
+                                email.setCustomValidity('El correo electrónico no es válido');
+                            } 
+                        }
+                    });
                 } else {
                     email.setCustomValidity('');
                 }
             });
-            
 
         /*
 
@@ -47,7 +87,16 @@
        
         description.addEventListener('input', function() {
             if(description.value.length < 50 || description.value.length > 300) {
-                description.setCustomValidity('La descripción debe tener entre 50 y 300 caracteres');
+                $.ajax({
+                    url: 'procesar.php',
+                    type: 'POST',
+                    data: {description: description.value},
+                    success: function(response) {
+                        if(response === 'invalid') {
+                            description.setCustomValidity('La descripción debe tener entre 50 y 300 caracteres');
+                        }
+                    }
+                }); 
             } else {
                 description.setCustomValidity('');
             }
@@ -66,9 +115,27 @@
                 let fileSize = file.files[0].size / 1024 / 1024;
 
                 if(fileExtension !== 'pdf' && fileExtension !== 'jpg') {
-                    file.setCustomValidity('El archivo debe ser de tipo .pdf o .jpg');
+                    $.ajax({
+                        url: 'procesar.php',
+                        type: 'POST',
+                        data: {fileExtension: fileExtension},
+                        success: function(response) {
+                            if(response === 'invalid') {
+                                file.setCustomValidity('El archivo debe ser de tipo PDF o JPG');
+                            }
+                        }
+                    });
                 } else if(fileSize > 2) {
-                    file.setCustomValidity('El archivo debe pesar menos de 2MB');
+                    $.ajax({
+                        url: 'procesar.php',
+                        type: 'POST',
+                        data: {fileSize: fileSize},
+                        success: function(response) {
+                            if(response === 'invalid') {
+                                file.setCustomValidity('El archivo debe pesar menos de 2MB');
+                            }
+                        }
+                    });
                 } else {
                     file.setCustomValidity('');
                 }
@@ -77,44 +144,32 @@
                 file.setCustomValidity('Debe adjuntar un archivo');
             }
         });
-
-        /*
-
-        ● Mostrar mensajes de error dinámicos en caso de que falte información o se
-        ingrese un dato incorrecto.
-
-        */
-       
-        window.onload = function() {
-            
-        }
-
-        /*
+                
+                
+        /* 
 
         ● Como extra, intentad el envío de este formulario a través de AJAX y así evitar
         tener que recargar la página una vez enviado el formulario.
 
         */
-       /* 
-        document.getElementById('form').addEventListener('submit', function(event) {
-            event.preventDefault();
 
-            let formData = new FormData(this);
+        $('#form').submit(function(event) { 
+            event.preventDefault(); // Evitamos que el formulario se envíe de forma convencional
 
-            fetch('procesar.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('respuesta').innerText = data;
-            })
-            .catch(error => console.error('Error:', error));
+            let formData = new FormData(this); // Creamos un objeto FormData con los datos del formulario 
+
+            $.ajax({ // Enviamos el formulario a través de AJAX
+                url: 'procesar.php', // Ruta del archivo que procesará el formulario
+                type: 'POST', // Método de envío
+                data: formData, // Datos a enviar
+                success: function(response) { // Función que se ejecuta si la petición es exitosa
+                    alert('Formulario enviado correctamente');
+                },
+                cache: false, // No almacenar caché
+                contentType: false, // No establecer tipo de contenido
+                processData: false // No procesar datos
+            });
         });
-        
-        */
-
-        //Opción usando jQuery 
 
         /*
 
