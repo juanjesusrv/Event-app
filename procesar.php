@@ -55,6 +55,44 @@ if ($_SERVER['REQUEST_METHOD'] === "post") {
 
 
 
+    //ruta del archivo recibo por formulario
+    $ruta="Event-app\subidas";
+
+    //comprobando los datos del archivo
+
+    $nombre_Fichero=$_FILES["fichero"]["name"];
+    $tmpName_Fichero=$_FILES["fichero"]["tmp_name"];
+    $size_Fichero=$_FILES["fichero"]["size"];
+    $tipo_Fichero=$_FILES["fichero"]["type"];
+
+
+    if ($tipo_Fichero != "application/pdf") {
+        $mesaje = "Error: comprobar fichero del formulario";
+        header("Location: index.php?mensaje=$mensaje");
+        exit();
+    }
+
+    $maxSize=2000*2000;
+
+    if ($size_Fichero>$maxSize) {
+        $mesaje = "Error: comprobar tamaño del fichero del formulario";
+        header("Location: index.php?mensaje=$mensaje");
+        exit();
+    }
+
+    $rutaDestino=$ruta.basename($nombre_Fichero);
+        if (move_uploaded_file($tmpName_Fichero,$rutaDestino)) {
+            echo "Archivo subido con exito: ".$nombre_Fichero;
+            "<br><br>";
+            echo "<p> <embed src='$rutaDestino' type = 'application/pdf' width='600' height='500'</p>";
+        }else{
+            $mesaje = "Error: no se puedo subir el fichero del formulario";
+            header("Location: index.php?mensaje=$mensaje");
+            exit();
+        }
+
+
+
     //validacion de email php usando filver_var
     $email = filter_var($email, FILTER_SANITIZE_EMAIL);
 
