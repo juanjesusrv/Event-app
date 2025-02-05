@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <link rel="stylesheet" href="styles.css">
     
-    <title>Reserva Evento</title>
+    <title>Starbucks | Event</title>
 </head>
 <body>
     
