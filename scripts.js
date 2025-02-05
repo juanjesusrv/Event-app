@@ -10,136 +10,147 @@
 
             let form = document.getElementById('form');
             let username = document.getElementById('name');
-            let nameError = document.getElementById('nameError');
-
-
-            let lastName = document.getElementById('lname');
-            let job = document.getElementById('job');
-            let company = document.getElementById('company');
-            let description = document.getElementById('descripText');
-            let descHidden = document.getElementById('des');
-            let date = document.getElementById('date');
-            let file = document.getElementById('doc');
-            let email = document.getElementById('email');
-            
-
-            form.addEventListener('submit', function(event) {
-                if(username.value === '' || email.value === '' || description.value === '' || file.files.length === 0) {
-                    $.ajax({
-                        url: 'index.php',
-                        type: 'POST',
-                        data: {username: username.value, email: email.value, description: description.value, file: file.files.length},
-                        success: function(response) {
-                            if(response === 'empty') {
-                                if(username.value === '') {
-                                    username.setCustomValidity('El campo nombre es obligatorio');
-                                } else {
-                                    username.setCustomValidity('');
-                                }
-
-                                if(lastName.value === '') {
-                                    lastName.setCustomValidity('El campo apellido es obligatorio');
-                                } else {
-                                    lastName.setCustomValidity('');
-                                }
-
-                                if(job.value === '') {
-                                    job.setCustomValidity('El campo puesto es obligatorio');
-                                } else {
-                                    job.setCustomValidity('');
-                                }
-
-                                if(company.value === '') {
-                                    company.setCustomValidity('El campo empresa es obligatorio');
-                                } else {
-                                    company.setCustomValidity('');
-                                }
-
-                                if(description.value === '') {
-                                    description.setCustomValidity('El campo descripción es obligatorio');
-                                } else {
-                                    description.setCustomValidity('');
-                                }   
-                                if(date.value === '') {
-                                    date.setCustomValidity('El campo fecha es obligatorio');
-                                } else {
-                                    date.setCustomValidity('');
-                                }
-
-                                if(doc.value === '') {
-                                    doc.setCustomValidity('El campo documento es obligatorio');
-                                } else {
-                                    doc.setCustomValidity('');
-                                }
-
-                                if(email.value === '') {
-                                    email.setCustomValidity('El campo correo electrónico es obligatorio');
-                                } else {
-                                    email.setCustomValidity('');
-                                }
-                        }
-                    }
-                    });
-                    event.preventDefault();
-                } 
-            });
-
-        
-
-
-            /*Comprobar con ajax que el campo username se ha rellenado, si no se rellena despues de pulsar en el
-            pone visible el div nameError */
+            let mensajeError = document.getElementById('mensaje-name');
 
             username.addEventListener('input', function() {
-                if(username.value === '') {
-                    $.ajax({
-                        url: 'index.php',
-                        type: 'POST',
-                        data: {username: username.value},
-                        success: function(response) {
-                            if(response === 'empty') {
-                                nameError.style.display = 'block';
-                            } else {
-                                nameError.style.display = 'none';
-                            }
-                        }
-                    });
+                if(username.value.length < 3) { 
+                    mensajeError.innerHTML = 'El campo nombre debe tener al menos 3 caracteres';
+                    mensajeError.classList.remove('hidden');
                 } else {
-                    nameError.style.display = 'none';
+                    mensajeError.classList.add('hidden');
                 }
             });
 
-        /*
+            username.addEventListener('focusout', function() {
+                if(username.value === '') {
+                    mensajeError.innerHTML = 'El campo nombre es obligatorio';
+                    mensajeError.classList.remove('hidden');
+                } else {
+                    mensajeError.classList.add('hidden');
+                }
+            });
 
-        ● Verificar que el correo electrónico tenga un formato válido.
 
-        */ 
+            let lastName = document.getElementById('lname');
+            let mensajeApe = document.getElementById('mensaje-lname');
+
+            lastName.addEventListener('input', function() {
+                if(lastName.value.length < 3) {
+                    mensajeApe.innerHTML = 'El campo apellido debe tener al menos 3 caracteres';
+                    mensajeApe.classList.remove('hidden');
+                } else {
+                    mensajeApe.classList.add('hidden');
+                }
+            });
+
+            lastName.addEventListener('focusout', function() {
+                if(lastName.value === '') {
+                    mensajeApe.innerHTML = 'El campo apellido es obligatorio';
+                    mensajeApe.classList.remove('hidden');
+                } else {
+                    mensajeApe.classList.add('hidden');
+                }
+            });
+
+            let job = document.getElementById('job');
+            let mensajeJob = document.getElementById('mensaje-job');
+
+            job.addEventListener('input', function() {
+                if(job.value.length < 3) {
+                    mensajeJob.innerHTML = 'El campo puesto debe tener al menos 3 caracteres';
+                    mensajeJob.classList.remove('hidden');
+                } else {
+                    mensajeJob.classList.add('hidden');
+                }
+            });
+
+            job.addEventListener('focusout', function() {
+                if(job.value === '') {
+                    mensajeJob.innerHTML = 'El campo puesto es obligatorio';
+                    mensajeJob.classList.remove('hidden');
+                } else {
+                    mensajeJob.classList.add('hidden');
+                }
+            });
+
+
+            let company = document.getElementById('company');
+            
+            let description = document.getElementById('descripText');
+            let mensajeDescription = document.getElementById('mensaje-des');
+
+            description.addEventListener('input', function() {
+                if(description.value.length < 50 || description.value.length > 300) {
+                    mensajeDescription.innerHTML = 'La descripción debe tener entre 50 y 300 caracteres';
+                    mensajeDescription.classList.remove('hidden');
+                } else {
+                    mensajeDescription.classList.add('hidden');
+                }
+            });
+
+            description.addEventListener('focusout', function() {
+                if(description.value === '') {
+                    mensajeDescription.innerHTML = 'El campo descripción es obligatorio';
+                    mensajeDescription.classList.remove('hidden');
+                } else {
+                    mensajeDescription.classList.add('hidden');
+                }
+            });
+
+
+            let descHidden = document.getElementById('des');
+
+
+            let date = document.getElementById('date');
+
+
+            let file = document.getElementById('doc');
+            let mensajeDoc = document.getElementById('mensaje-doc');
+
+            file.addEventListener('input', function() {
+                if(file.files.length > 0) {
+                    let fileExtension = file.files[0].name.split('.').pop();
+                    let fileSize = file.files[0].size / 1024 / 1024;
+
+                    if(fileExtension !== 'pdf' && fileExtension !== 'jpg') {
+                        mensajeDoc.innerHTML = 'El archivo debe ser de tipo PDF o JPG';
+                        mensajeDoc.classList.remove('hidden');
+                    } else if(fileSize > 2) {
+                        mensajeDoc.innerHTML = 'El archivo debe pesar menos de 2MB';
+                        mensajeDoc.classList.remove('hidden');
+                    } else {
+                        mensajeDoc.classList.add('hidden');
+                    }
+                } else {
+                    mensajeDoc.innerHTML = 'Debe adjuntar un archivo';
+                    mensajeDoc.classList.remove('hidden');
+                }
+            });
+
+
+            let email = document.getElementById('email');
+            let mensajeEmail = document.getElementById('menasje-email');
+
             const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
             email.addEventListener('input', function() {
                 if(!regex.test(email.value)) {
-                    $.ajax({
-                        url: 'index.php',
-                        type: 'POST',
-                        data: {email: email.value},
-                        success: function(response) {
-                            if(response === 'invalid') {
-                                email.setCustomValidity('El correo electrónico no es válido');
-                            } 
-                        }
-                    });
+                    mensajeEmail.innerHTML = 'El email no es válido';
+                    mensajeEmail.classList.remove('hidden');
                 } else {
-                    email.setCustomValidity('');
+                    mensajeEmail.classList.add('hidden');
                 }
             });
 
-        /*
+            email.addEventListener('focusout', function() {
+                if(email.value === '') {
+                    mensajeEmail.innerHTML = 'El campo email es obligatorio';
+                    mensajeEmail.classList.remove('hidden');
+                } else {
+                    mensajeEmail.classList.add('hidden');
+                }
+            });
 
-        ● Controlar la cantidad de caracteres en el campo de "descripción de empresa"
-        (mínimo 50, máximo 300 caracteres).
-
-        */
-       
         description.addEventListener('input', function() {
             if(description.value.length < 50 || description.value.length > 300) {
                 $.ajax({
@@ -157,73 +168,18 @@
             }
         });
 
-        /*
-
-        ● Validar que se adjunte un archivo de tipo .pdf o .jpg con un peso máximo de
-        2MB.
-
-        */
-       
-        file.addEventListener('input', function() {
-            if(file.files.length > 0) {
-                let fileExtension = file.files[0].name.split('.').pop();
-                let fileSize = file.files[0].size / 1024 / 1024;
-
-                if(fileExtension !== 'pdf' && fileExtension !== 'jpg') {
-                    $.ajax({
-                        url: 'index.php',
-                        type: 'POST',
-                        data: {fileExtension: fileExtension},
-                        success: function(response) {
-                            if(response === 'invalid') {
-                                file.setCustomValidity('El archivo debe ser de tipo PDF o JPG');
-                            }
-                        }
-                    });
-                } else if(fileSize > 2) {
-                    $.ajax({
-                        url: 'index.php',
-                        type: 'POST',
-                        data: {fileSize: fileSize},
-                        success: function(response) {
-                            if(response === 'invalid') {
-                                file.setCustomValidity('El archivo debe pesar menos de 2MB');
-                            }
-                        }
-                    });
-                } else {
-                    file.setCustomValidity('');
-                }
-
-            } else {
-                file.setCustomValidity('Debe adjuntar un archivo');
-            }
-        });
-                
-                
-        /* 
-
-        ● Como extra, intentad el envío de este formulario a través de AJAX y así evitar
-        tener que recargar la página una vez enviado el formulario.
-
-        */
-
         form.addEventListener('submit', function(event) { // Añadimos un evento al formulario para capturar el envío
             event.preventDefault(); // Evitamos que el formulario se envíe de forma convencional
 
             let formData = new FormData(this); // Creamos un objeto FormData con los datos del formulario 
 
-            if (username.value === '' || email.value === '' || description.value === '' || file.files.length === 0) { // Comprobamos si los campos obligatorios están completos
-                alert('Debes completar todos los campos obligatorios'); // Si no están completos, mostramos un mensaje de error
-                return; // Y salimos de la función
-            }
-
             $.ajax({ // Enviamos el formulario a través de AJAX
-                url: 'index.php', // Ruta del archivo que procesará el formulario
+                url: 'procesar.php', // Ruta del archivo que procesará el formulario
                 type: 'POST', // Método de envío
                 data: formData, // Datos a enviar
                 success: function(response) { // Función que se ejecuta si la petición es exitosa
-                    alert('Formulario enviado correctamente');
+                    form.classList.add('hidden'); // Ocultamos el formulario
+
                 },
                 cache: false, // No almacenar caché
                 contentType: false, // No establecer tipo de contenido
@@ -232,9 +188,3 @@
 
 
         });
-
-        /* Comprobaciones en tiempo real */
-        /* Para hacer la comprobación en tiempo real, se puede utilizar el evento input en los campos del formulario. */
-        /* Este evento se ejecuta cada vez que el valor de un campo cambia. */
-        /* De esta forma, se puede comprobar si el valor introducido es correcto o no y mostrar un mensaje de error si es necesario. */
-        
