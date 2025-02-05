@@ -118,7 +118,7 @@ main .right .form-wrapper {
 main .right .form-wrapper form {
   padding: 20px;
   box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
-  width: 100%;
+  width: 80%;
   margin: 20px;
 }
 main .right .form-wrapper form label {
@@ -174,8 +174,9 @@ main .right .form-wrapper form .descripText {
   color: rgba(0, 0, 0, 0.7);
   font-size: 14px;
   word-break: break-all;
-  line-break: strict;
+  line-break: loose;
   resize: none;
+  max-width: 384px;
 }
 main .right .form-wrapper form .descripText:focus {
   outline: none;
