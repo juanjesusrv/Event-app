@@ -220,5 +220,15 @@ footer .center h2 {
   font-size: 24px;
   color: #006241;
 }
+footer .equipo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin: 20px 0;
+}
+footer .equipo a {
+  text-decoration: none;
+}
 
 /*# sourceMappingURL=styles.css.map */

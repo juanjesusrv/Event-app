@@ -50,6 +50,11 @@
                 </div>
 
                 <div class="col">
+                    <label for="email">Correo electronico</label>
+                    <input type="email" name="email" id="email">
+                </div>
+
+                <div class="col">
                     <label for="date">Fecha</label>
                     <input type="date" name="date" id="date">
                 </div>
