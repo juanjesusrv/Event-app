@@ -198,6 +198,101 @@ main .right .form-wrapper form .carga-doc {
 main .right .form-wrapper form .carga-doc i {
   color: #006241;
 }
+main .right .cards-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 2rem 0;
+}
+main .right .cards-wrapper .card-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+main .right .cards-wrapper .card-container .card-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0 3rem;
+}
+main .right .cards-wrapper .card-container .card-row img {
+  width: 325px;
+  width: 50%;
+}
+main .right .cards-wrapper .card-container .card-row .card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 50%;
+  padding: 40px;
+}
+main .right .cards-wrapper .card-container .card-row .card-content h3 {
+  font-family: "Noto Sans", serif;
+  font-weight: 800;
+  line-height: 2.7rem;
+  font-size: 24px;
+  color: #1f1f1f;
+}
+main .right .cards-wrapper .card-container .card-row .card-content h4 {
+  font-family: "Open Sans", serif;
+  font-weight: 500;
+  font-size: 20px;
+}
+main .right .cards-wrapper .card-container .card-row .card-content .lesser {
+  margin: 20px 0;
+  color: #6c6c6c;
+  font-size: 14px;
+}
+main .right .cards-wrapper .card-container-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+main .right .cards-wrapper .card-container-row .card-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  margin: 1rem;
+}
+main .right .cards-wrapper .card-container-row .card-col img {
+  width: 100%;
+}
+main .right .cards-wrapper .card-container-row .card-col .card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 40px;
+}
+main .right .cards-wrapper .card-container-row .card-col .card-content h3 {
+  font-family: "Noto Sans", serif;
+  font-weight: 800;
+  font-size: 24px;
+  color: #1f1f1f;
+}
+main .right .cards-wrapper .card-container-row .card-col .card-content h4 {
+  font-family: "Open Sans", serif;
+  font-weight: 500;
+  font-size: 20px;
+}
+main .right .cards-wrapper .card-container-row .card-col .card-content .lesser {
+  margin: 20px 0;
+  color: #6c6c6c;
+  font-size: 14px;
+}
 
 .col {
   display: flex;
@@ -226,6 +321,10 @@ main .right .form-wrapper form .carga-doc i {
 }
 .myButton1:hover {
   background-color: rgba(0, 98, 65, 0.1);
+}
+
+.ipt-rojo {
+  border: 1px solid red;
 }
 
 .hidden {
