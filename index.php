@@ -95,7 +95,7 @@
             <div class="cards-wrapper">
                 <div class="card-container">
                     <div class="card-row">
-                        <img src="" alt="">
+                        <img src="assets/starbucks_deliver.webp" alt="Reparto de Starbucks">
                         <div class="card-content">
                             <h3>¡Te lo llevamos!</h3>
                             <h4>Disfruta tu experiencia Starbucks donde quieras</h4>
@@ -106,7 +106,7 @@
                 </div>
                 <div class="card-container">
                     <div class="card-col">
-                        <img src="" alt="">
+                        <img src="assets/starbucks_carta.webp" alt="Cafe de starbucks">
                         <div class="card-content">
                             <h4>Carta</h4>
                             <span class="lesser">Bebidas deliciosas y alimentos de gran sabor elaborados con ingredientes sencillos pero de gran calidad</span>
@@ -114,7 +114,7 @@
                         </div>
                     </div>
                     <div class="card-col">
-                        <img src="" alt="">
+                        <img src="assets/starbuckc_tienda.webp" alt="Starbucks tienda">
                         <div class="card-content">
                             <h4>Tiendas Starbucks</h4>
                             <span class="lesser">Encuentra tu tienda Starbucks más cercana, ¡te esperamos!</span>
@@ -122,7 +122,7 @@
                         </div>
                     </div>
                     <div class="card-col">
-                        <img src="" alt="">
+                        <img src="assets/starbucks_cafe.webp" alt="Starbucks cafe">
                         <div class="card-content">
                             <h4>Cómo preparar café Starbucks</h4>
                             <span class="lesser">Descubre los distintos métodos de eleboración para preparar tu café Starbucks perfecto en casa</span>
