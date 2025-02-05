@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 @import "_variables.scss";
 @import "_header.scss";
@@ -9,6 +10,111 @@ body {
     box-sizing: border-box;
     font-family: $font-base;
 }
+
+main {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba($color: #d3d3d3, $alpha: 0.2);
+
+    & .left {
+        display: flex;
+        flex-shrink: 0;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-image: url("assets/starbucks_rewards.webp");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        min-width: 40%;
+        width: auto;
+
+    }
+
+    & .right {
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        overflow-y: auto;
+        width: 100%;
+
+        & .banner {
+            width: auto;
+            
+
+            & img {
+                width: 100%;
+                height: auto;
+                object-fit: contain;    // Imagen no corta ni deforma
+                
+            }
+        }
+
+        & .form-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            // width: 100%;
+            margin: 3rem 0;
+
+            & form {
+                padding: 20px;
+                box-shadow: 0 0 2px 1px rgba($color: #000000, $alpha: 0.2);
+                width: 100%;
+                margin: 20px;
+                
+                & label {
+                    font-family: $font-sodo;
+                    font-size: 20px;
+                    font-weight: 350;
+                    padding: 0;
+                    margin: 0;
+                    // letter-spacing: -1px;
+                }
+
+                & .sub {
+                    font-size: 12px;
+                    color: rgba($color: #000000, $alpha: 0.5);
+                    padding: 0;
+                    margin: 0;
+                }
+
+                & input {
+                    margin: 1rem 0;
+                    padding: 0.5rem 0.8rem;
+                    font-size: 16px;
+                    background-color: transparent;
+                    color: $sb-green;
+                    font-family: $font-base;
+                    border: 1px solid $sb-green;
+                    border-radius: 25px;
+                    text-align: center;
+                    transition: 150ms ease-in;
+
+                    &:hover {
+                        background-color: rgba($color: $sb-green, $alpha: 0.1);
+                    }
+                }
+
+            }
+        }
+
+
+    }
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: flex-start;
+}
+
 
 
 
