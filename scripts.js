@@ -9,10 +9,16 @@
         */
 
             let form = document.getElementById('form');
-            let username = document.getElementById('username');
+            let username = document.getElementById('name');
+            let lastName = document.getElementById('lname');
+            let job = document.getElementById('job');
+            let company = document.getElementById('company');
+            let description = document.getElementById('descripText');
+            let descHidden = document.getElementById('des');
+            let date = document.getElementById('date');
+            let file = document.getElementById('doc');
             let email = document.getElementById('email');
-            let description = document.getElementById('description');
-            let file = document.getElementById('file');
+            
 
             form.addEventListener('submit', function(event) {
                 if(username.value === '' || email.value === '' || description.value === '' || file.files.length === 0) {
@@ -23,30 +29,53 @@
                         success: function(response) {
                             if(response === 'empty') {
                                 if(username.value === '') {
-                                    username.setCustomValidity('Este campo es obligatorio');
+                                    username.setCustomValidity('El campo nombre es obligatorio');
                                 } else {
                                     username.setCustomValidity('');
                                 }
 
-                                if (email.value === '') {
-                                    email.setCustomValidity('Este campo es obligatorio');
+                                if(lastName.value === '') {
+                                    lastName.setCustomValidity('El campo apellido es obligatorio');
+                                } else {
+                                    lastName.setCustomValidity('');
+                                }
+
+                                if(job.value === '') {
+                                    job.setCustomValidity('El campo puesto es obligatorio');
+                                } else {
+                                    job.setCustomValidity('');
+                                }
+
+                                if(company.value === '') {
+                                    company.setCustomValidity('El campo empresa es obligatorio');
+                                } else {
+                                    company.setCustomValidity('');
+                                }
+
+                                if(description.value === '') {
+                                    description.setCustomValidity('El campo descripción es obligatorio');
+                                } else {
+                                    description.setCustomValidity('');
+                                }   
+                                if(date.value === '') {
+                                    date.setCustomValidity('El campo fecha es obligatorio');
+                                } else {
+                                    date.setCustomValidity('');
+                                }
+
+                                if(doc.value === '') {
+                                    doc.setCustomValidity('El campo documento es obligatorio');
+                                } else {
+                                    doc.setCustomValidity('');
+                                }
+
+                                if(email.value === '') {
+                                    email.setCustomValidity('El campo correo electrónico es obligatorio');
                                 } else {
                                     email.setCustomValidity('');
                                 }
-
-                                if (description.value === '') {
-                                    description.setCustomValidity('Este campo es obligatorio');
-                                } else {
-                                    description.setCustomValidity('');
-                                }
-
-                                if (file.files.length === 0) {
-                                    file.setCustomValidity('Este campo es obligatorio');
-                                } else {
-                                    file.setCustomValidity('');
-                                }
-                            }
                         }
+                    }
                     });
                     event.preventDefault();
                 } 
