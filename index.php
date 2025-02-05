@@ -29,18 +29,21 @@
                     <label for="name">Nombre</label>
                     <p class="sub">Nombre del representante</p>
                     <input type="text" name="name" id="name">
+                    <div id="mensaje-name" class="hidden"></div>
                 </div>
 
                 <div class="col">
                     <label for="lname">Apellidos</label>
                     <p class="sub">Apellidos del representante</p>
                     <input type="text" name="lname" id="lname">
+                    <div id="mensaje-lname" class="hidden"></div>
                 </div>
 
                 <div class="col">
                     <label for="job">Puesto</label>
                     <p class="sub">Cargo que ocupa</p>
                     <input type="text" name="job" id="job">
+                    <div id="mensaje-job" class="hidden"></div>
                 </div>
 
                 <div class="col">
@@ -52,11 +55,13 @@
 
                     </div>
                     <input type="hidden" name="des" id="des">
+                    <div id="mensaje-des" class="hidden"></div>
                 </div>
 
                 <div class="col">
                     <label for="email">Correo electronico</label>
                     <input type="email" name="email" id="email">
+                    <div id="menasje-email" class="hidden"></div>
                 </div>
 
                 <div class="col">
@@ -67,6 +72,7 @@
                 <div class="col">
                     <label for="doc">Documento</label>
                     <input type="file" name="doc" id="doc">
+                    <div id="mensaje-doc" class="hidden"></div>
                 </div>
 
                 <div class="row">

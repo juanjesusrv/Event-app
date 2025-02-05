@@ -48,14 +48,25 @@ footer {
     & .equipo {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        justify-content: center;
+        align-items: flex-start;
         gap: 5px;
         margin: 20px 0;
 
         & a {
 
             text-decoration: none;
-            
+            color: $sb-black;
+            font-family: $font-sodo;
+            font-weight: 600;
+            transition: 150ms ease-in-out;
+            -webkit-transition: 150ms ease-in-out;
+            -moz-transition: 150ms ease-in-out;
+
+
+            &:hover {
+                color: rgba($color: $sb-black, $alpha: 0.6);
+            }
 
         }
 
