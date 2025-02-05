@@ -10,6 +10,9 @@
 
             let form = document.getElementById('form');
             let username = document.getElementById('name');
+            let nameError = document.getElementById('nameError');
+
+
             let lastName = document.getElementById('lname');
             let job = document.getElementById('job');
             let company = document.getElementById('company');
@@ -23,7 +26,7 @@
             form.addEventListener('submit', function(event) {
                 if(username.value === '' || email.value === '' || description.value === '' || file.files.length === 0) {
                     $.ajax({
-                        url: 'procesar.php',
+                        url: 'index.php',
                         type: 'POST',
                         data: {username: username.value, email: email.value, description: description.value, file: file.files.length},
                         success: function(response) {
@@ -83,6 +86,29 @@
 
         
 
+
+            /*Comprobar con ajax que el campo username se ha rellenado, si no se rellena despues de pulsar en el
+            pone visible el div nameError */
+
+            username.addEventListener('input', function() {
+                if(username.value === '') {
+                    $.ajax({
+                        url: 'index.php',
+                        type: 'POST',
+                        data: {username: username.value},
+                        success: function(response) {
+                            if(response === 'empty') {
+                                nameError.style.display = 'block';
+                            } else {
+                                nameError.style.display = 'none';
+                            }
+                        }
+                    });
+                } else {
+                    nameError.style.display = 'none';
+                }
+            });
+
         /*
 
         ● Verificar que el correo electrónico tenga un formato válido.
@@ -93,7 +119,7 @@
             email.addEventListener('input', function() {
                 if(!regex.test(email.value)) {
                     $.ajax({
-                        url: 'procesar.php',
+                        url: 'index.php',
                         type: 'POST',
                         data: {email: email.value},
                         success: function(response) {
@@ -117,7 +143,7 @@
         description.addEventListener('input', function() {
             if(description.value.length < 50 || description.value.length > 300) {
                 $.ajax({
-                    url: 'procesar.php',
+                    url: 'index.php',
                     type: 'POST',
                     data: {description: description.value},
                     success: function(response) {
@@ -145,7 +171,7 @@
 
                 if(fileExtension !== 'pdf' && fileExtension !== 'jpg') {
                     $.ajax({
-                        url: 'procesar.php',
+                        url: 'index.php',
                         type: 'POST',
                         data: {fileExtension: fileExtension},
                         success: function(response) {
@@ -156,7 +182,7 @@
                     });
                 } else if(fileSize > 2) {
                     $.ajax({
-                        url: 'procesar.php',
+                        url: 'index.php',
                         type: 'POST',
                         data: {fileSize: fileSize},
                         success: function(response) {
@@ -182,13 +208,18 @@
 
         */
 
-        $('#form').submit(function(event) { 
+        form.addEventListener('submit', function(event) { // Añadimos un evento al formulario para capturar el envío
             event.preventDefault(); // Evitamos que el formulario se envíe de forma convencional
 
             let formData = new FormData(this); // Creamos un objeto FormData con los datos del formulario 
 
+            if (username.value === '' || email.value === '' || description.value === '' || file.files.length === 0) { // Comprobamos si los campos obligatorios están completos
+                alert('Debes completar todos los campos obligatorios'); // Si no están completos, mostramos un mensaje de error
+                return; // Y salimos de la función
+            }
+
             $.ajax({ // Enviamos el formulario a través de AJAX
-                url: 'procesar.php', // Ruta del archivo que procesará el formulario
+                url: 'index.php', // Ruta del archivo que procesará el formulario
                 type: 'POST', // Método de envío
                 data: formData, // Datos a enviar
                 success: function(response) { // Función que se ejecuta si la petición es exitosa
@@ -198,8 +229,12 @@
                 contentType: false, // No establecer tipo de contenido
                 processData: false // No procesar datos
             });
+
+
         });
 
-        /*
-
-    Hacer commit y push de los cambios*/
+        /* Comprobaciones en tiempo real */
+        /* Para hacer la comprobación en tiempo real, se puede utilizar el evento input en los campos del formulario. */
+        /* Este evento se ejecuta cada vez que el valor de un campo cambia. */
+        /* De esta forma, se puede comprobar si el valor introducido es correcto o no y mostrar un mensaje de error si es necesario. */
+        
