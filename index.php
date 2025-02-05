@@ -47,6 +47,11 @@
                     <label for="company">Compañia</label>
                     <div class="sub">Nombre de la empresa</div>
                     <input type="text" name="company" id="company">
+                    <div class="sub">Descripción de la empresa</div>
+                    <div class="descripText" id="descripText" contenteditable="true">
+
+                    </div>
+                    <input type="hidden" name="des" id="des">
                 </div>
 
                 <div class="col">
