@@ -99,6 +99,26 @@ main {
                     &:hover {
                         background-color: rgba($color: $sb-green, $alpha: 0.1);
                     }
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+
+                & button {
+                    font-size: 13px;
+                    font-family: $font-base;
+                    color: $sb-green;
+                    font-weight: 700;
+                    padding: 0.4rem 1.2rem;
+                    border: 1px solid $sb-green;
+                    border-radius: 25px;
+                    min-width: 120px;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: rgba($color: $sb-green, $alpha: 0.1);
+                    }
                 }
 
             }
@@ -113,6 +133,13 @@ main {
     flex-direction: column;
     justify-content: center;
     align-content: flex-start;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 

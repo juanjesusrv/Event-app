@@ -5,22 +5,48 @@ header {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 1rem;
+  padding: 1.5rem;
   box-shadow: 1px 0 4px rgba(0, 0, 0, 0.3);
   position: sticky;
   top: 0;
   background-color: #fff;
   z-index: 999;
 }
-header img {
+header .left {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+header .left img {
   width: 55px;
+}
+header .left nav {
+  display: flex;
+  height: 100%;
+  gap: 20px;
+}
+header .left nav a {
+  text-decoration: none;
+  font-family: "Kanit", serif;
+  color: #000000;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: 150ms ease-in;
+  -webkit-transition: 150ms ease-in;
+  -moz-transition: 150ms ease-in;
+}
+header .left nav a:hover {
+  color: #006241;
 }
 header .right {
   display: flex;
+  right: 0;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin-right: 6rem;
 }
 header .right h1 {
   font-family: "Kanit", serif;
@@ -123,6 +149,23 @@ main .right .form-wrapper form input {
 main .right .form-wrapper form input:hover {
   background-color: rgba(0, 98, 65, 0.1);
 }
+main .right .form-wrapper form input:focus {
+  outline: none;
+}
+main .right .form-wrapper form button {
+  font-size: 13px;
+  font-family: "Open Sans", serif;
+  color: #006241;
+  font-weight: 700;
+  padding: 0.4rem 1.2rem;
+  border: 1px solid #006241;
+  border-radius: 25px;
+  min-width: 120px;
+  cursor: pointer;
+}
+main .right .form-wrapper form button:hover {
+  background-color: rgba(0, 98, 65, 0.1);
+}
 
 .col {
   display: flex;
@@ -131,12 +174,21 @@ main .right .form-wrapper form input:hover {
   align-content: flex-start;
 }
 
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 footer {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
   background-color: #fff;
+  width: 100%;
+  box-shadow: -1px 0 2px rgba(0, 0, 0, 0.2);
 }
 footer .link {
   display: flex;
@@ -158,6 +210,15 @@ footer .link a {
 footer .link a :hover {
   color: #006241;
   border-bottom: 1px solid #006241;
+}
+footer .center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+footer .center h2 {
+  font-size: 24px;
+  color: #006241;
 }
 
 /*# sourceMappingURL=styles.css.map */
