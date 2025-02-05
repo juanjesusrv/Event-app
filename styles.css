@@ -118,7 +118,7 @@ main .right .form-wrapper {
 main .right .form-wrapper form {
   padding: 20px;
   box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
-  width: 80%;
+  min-width: 400px;
   margin: 20px;
 }
 main .right .form-wrapper form label {
@@ -181,6 +181,23 @@ main .right .form-wrapper form .descripText {
 main .right .form-wrapper form .descripText:focus {
   outline: none;
 }
+main .right .form-wrapper form .carga-doc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 98, 65, 0.1);
+  width: 120px;
+  height: 120px;
+  border: 1px dotted #006241;
+  border-radius: 6px;
+  place-self: center;
+  margin: 1rem 0;
+  cursor: pointer;
+}
+main .right .form-wrapper form .carga-doc i {
+  color: #006241;
+}
 
 .col {
   display: flex;
@@ -194,6 +211,21 @@ main .right .form-wrapper form .descripText:focus {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+.myButton1 {
+  font-size: 13px;
+  font-family: "Open Sans", serif;
+  color: #006241;
+  font-weight: 700;
+  padding: 0.4rem 1.2rem;
+  border: 1px solid #006241;
+  border-radius: 25px;
+  min-width: 120px;
+  cursor: pointer;
+}
+.myButton1:hover {
+  background-color: rgba(0, 98, 65, 0.1);
 }
 
 .hidden {
@@ -215,20 +247,17 @@ footer .link {
   justify-content: center;
   align-items: center;
 }
-footer .link a {
-  text-decoration: none;
-  padding: 10px 20px;
-  font-size: 18px;
-  font-weight: 600;
-  border-bottom: transparent 1px solid;
+footer .link img {
+  width: 50px;
   color: #000000;
+  cursor: pointer;
   transition: 350ms ease-in-out;
   -webkit-transition: 350ms ease-in-out;
   -moz-transition: 350ms ease-in-out;
 }
-footer .link a :hover {
+footer .link img:hover {
+  fill: #006241;
   color: #006241;
-  border-bottom: 1px solid #006241;
 }
 footer .center {
   display: flex;

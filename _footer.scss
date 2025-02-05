@@ -14,20 +14,17 @@ footer {
         justify-content: center;
         align-items: center;
 
-        & a {
-            text-decoration: none;
-            padding: 10px 20px;
-            font-size: 18px;
-            font-weight: 600;
-            border-bottom: transparent 1px solid;
+        & img {
+            width: 50px;
             color: $sb-black;
+            cursor: pointer;
             transition: 350ms ease-in-out;
             -webkit-transition: 350ms ease-in-out;
             -moz-transition: 350ms ease-in-out;
 
-            & :hover {
+            &:hover {
+                fill: $sb-green;
                 color: $sb-green;
-                border-bottom: 1px solid $sb-green;
             }
 
         }
